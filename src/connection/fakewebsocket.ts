@@ -410,7 +410,7 @@ export function makeFakeWebSocket(): typeof WebSocket {
 				const ws = new WispWS(uri);
 				ws.start();
 				return ws;
-			} else if (isCustomProtocol && url.hostname == "settings") {
+			} else if (isCustomProtocol && url.hostname == "settings" || url.hostname == "settings") {
 				return new SettingsWS();
 			} else {
 				return new AutoWS(uri, protos);
