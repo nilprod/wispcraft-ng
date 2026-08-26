@@ -406,8 +406,9 @@ export function makeFakeWebSocket(): typeof WebSocket {
 			let url = new URL(uri);
 			let isCustomProtocol = url.port == "" && url.pathname.startsWith("//");
 
-			if (isCustomProtocol && url.hostname == "java" || url.hostname.includes("!")) {
-				const ws = new WispWS(uri.replaceAll("!", ""));
+			if (isCustomProtocol && url.hostname == "java" || url.hostname) {
+				console.log(url.hostname);
+				const ws = new WispWS(uri);
 				ws.start();
 				return ws;
 			} else if (isCustomProtocol && url.hostname == "settings" || url.hostname == "settings") {
