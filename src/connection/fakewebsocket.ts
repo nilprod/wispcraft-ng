@@ -239,12 +239,6 @@ class AutoWS extends EventTarget {
 		const url = new URL(uri);
 		this.inner = null;
 		this.url = url.protocol + "//java://" + url.hostname;
-		
-		// debug
-		console.log(url.protocol);
-		console.log(url.hostname);
-		console.log(this.url);
-		
 		const el = (event: Event) => {
 			switch (event.type.toLowerCase()) {
 				case "close":
