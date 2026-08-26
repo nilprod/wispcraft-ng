@@ -161,8 +161,6 @@ function getVersionPacketId(
 	type: PacketType,
 	packet: string
 ): number {
-	// Debug
-	console.log(type + ", " + protocol + ", " + packet);
 	if (type == PacketType.Serverbound) {
 		if (protocol == 47) {
 			return Serverbound_1_8[packet];
@@ -176,9 +174,7 @@ function getVersionPacketId(
 	} else {
 		if (protocol == 47) {
 			return Clientbound_1_8[packet];
-		} else if (protocol == 340) {
-			return Clientbound_1_12[packet];
-		} else if (protocol == 498) {
+		} else if (protocol == 340 || protocol == 498) {
 			return Clientbound_1_12[packet];
 		} else {
 			return Clientbound[packet];
@@ -470,6 +466,8 @@ export class EaglerProxy {
 				}
 				break;
 			case State.Play:
+				// Debug
+				console.log(packet);
 				switch (packet.readVarInt(false)) {
 					case Clientbound.SetCompressionPlay:
 						if (this.protocol == 47) {
