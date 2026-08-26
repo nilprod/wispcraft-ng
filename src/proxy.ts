@@ -54,6 +54,10 @@ enum Serverbound_1_12 {
 	PluginMessage = 0x09,
 }
 
+enum Serverbound_1_14 {
+	PluginMessage = 0x0b,
+}
+
 enum Clientbound {
 	/* ==HANDSHAKING== */
 	EAG_ServerVersion = 0x02,
@@ -162,6 +166,8 @@ function getVersionPacketId(
 			return Serverbound_1_8[packet];
 		} else if (protocol == 340) {
 			return Serverbound_1_12[packet];
+		} else if (protocol == 498) {
+			return Serverbound_1_14[packet];
 		} else {
 			return Serverbound[packet];
 		}
@@ -169,6 +175,8 @@ function getVersionPacketId(
 		if (protocol == 47) {
 			return Clientbound_1_8[packet];
 		} else if (protocol == 340) {
+			return Clientbound_1_12[packet];
+		} else if (protocol == 498) {
 			return Clientbound_1_12[packet];
 		} else {
 			return Clientbound[packet];
