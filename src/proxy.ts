@@ -466,8 +466,6 @@ export class EaglerProxy {
 				}
 				break;
 			case State.Play:
-				// Debug
-				console.log(packet);
 				switch (packet.readVarInt(false)) {
 					case Clientbound.SetCompressionPlay:
 						if (this.protocol == 47) {
@@ -485,7 +483,11 @@ export class EaglerProxy {
 						let pk = packet.copy();
 						pk.readVarInt();
 						let tag = pk.readString();
+						// Debug
 						if (tag.startsWith("EAG|")) {
+							break;
+						} else {
+							console.log(tag);
 							break;
 						}
 					default:
