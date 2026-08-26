@@ -405,14 +405,15 @@ export function makeFakeWebSocket(): typeof WebSocket {
 
 			let url = new URL(uri);
 			let isCustomProtocol = url.port == "" && url.pathname.startsWith("//");
-			let isCustomProtocol2Java = url.port == "" && url.pathname.startsWith("//java/");
-			let isCustomProtocol2Settings = url.port == "" && url.pathname.startsWith("//settings/");
+			// debug
+			console.log(isCustomProtocol);
+			console.log(uri);
 
-			if (isCustomProtocol && url.hostname == "java" || isCustomProtocol2Java && url.hostname == "wss") {
+			if (isCustomProtocol && url.hostname == "java") {
 				const ws = new WispWS(uri);
 				ws.start();
 				return ws;
-			} else if (isCustomProtocol && url.hostname == "settings" || isCustomProtocol2Settings && url.hostname == "wss") {
+			} else if (isCustomProtocol && url.hostname == "settings") {
 				return new SettingsWS();
 			} else {
 				return new AutoWS(uri, protos);
