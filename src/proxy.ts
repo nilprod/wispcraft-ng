@@ -85,6 +85,10 @@ enum Clientbound_1_12 {
 	PluginMessage = 0x18,
 }
 
+enum Clientbound_1_14 {
+	UpdateRecipes = 0x5a,
+}
+
 class Packet extends Buffer {
 	constructor(packetType: number) {
 		super(new Uint8Array());
@@ -475,6 +479,8 @@ export class EaglerProxy {
 							this.compressor.compressionThresh = threshold;
 							break;
 						}
+					case Clientbound_1_14.UpdateRecipes:
+						break;
 					case getVersionPacketId(
 						this.protocol,
 						PacketType.Clientbound,
