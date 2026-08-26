@@ -239,6 +239,12 @@ class AutoWS extends EventTarget {
 		const url = new URL(uri);
 		this.inner = null;
 		this.url = url.protocol + "//java://" + url.hostname;
+		
+		// debug
+		console.log(url.protocol);
+		console.log(url.hostname);
+		console.log(this.url);
+		
 		const el = (event: Event) => {
 			switch (event.type.toLowerCase()) {
 				case "close":
@@ -406,8 +412,7 @@ export function makeFakeWebSocket(): typeof WebSocket {
 			let url = new URL(uri);
 			let isCustomProtocol = url.port == "" && url.pathname.startsWith("//");
 
-			if (isCustomProtocol && url.hostname == "java" || url.hostname) {
-				console.log(url.hostname);
+			if (isCustomProtocol && url.hostname == "java") {
 				const ws = new WispWS(uri);
 				ws.start();
 				return ws;
