@@ -162,7 +162,7 @@ function getVersionPacketId(
 	packet: string
 ): number {
 	// Debug
-	console.log(type + ", " + protocol + ", " + string);
+	console.log(type + ", " + protocol + ", " + packet);
 	if (type == PacketType.Serverbound) {
 		if (protocol == 47) {
 			return Serverbound_1_8[packet];
