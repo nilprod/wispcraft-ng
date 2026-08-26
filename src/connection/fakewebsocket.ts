@@ -408,12 +408,16 @@ export function makeFakeWebSocket(): typeof WebSocket {
 			// debug
 			console.log(isCustomProtocol);
 			console.log(uri);
+			console.log(url);
 
 			if (isCustomProtocol && url.hostname == "java") {
 				const ws = new WispWS(uri);
 				ws.start();
 				return ws;
-			} else if (isCustomProtocol && url.hostname == "settings") {
+			} else if (url.pathname.startsWith("//java/")) {
+				console.log("2nd method: " + uri); // testing
+				return null;
+			} else if (isCustomProtocol && url.hostname == "settings" || url.pathname.startsWith("//settings/")) {
 				return new SettingsWS();
 			} else {
 				return new AutoWS(uri, protos);
