@@ -75,6 +75,7 @@ enum Clientbound {
 	/* ==PLAY== */
 	SetCompressionPlay = 0x46,
 	PluginMessage = -0x00,
+	UpdateRecipes = 0x5a,
 }
 
 enum Clientbound_1_8 {
@@ -83,10 +84,6 @@ enum Clientbound_1_8 {
 
 enum Clientbound_1_12 {
 	PluginMessage = 0x18,
-}
-
-enum Clientbound_1_14 {
-	UpdateRecipes = 0x5a,
 }
 
 class Packet extends Buffer {
@@ -479,8 +476,12 @@ export class EaglerProxy {
 							this.compressor.compressionThresh = threshold;
 							break;
 						}
-					case Clientbound_1_14.UpdateRecipes:
-						break;
+					// fucking asshole, if i manage to find a proper solution,
+					// i will not touch a packet like this again.
+					// thanks: https://tools.minecraft.wiki/static/tools/protocol/
+					case Clientbound.UpdateRecipes:
+						if (this.protocol == 498)
+							break;
 					case getVersionPacketId(
 						this.protocol,
 						PacketType.Clientbound,
