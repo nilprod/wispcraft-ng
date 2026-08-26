@@ -93,7 +93,7 @@ class WispWS extends EventTarget {
 		this.readyState = WebSocket.CLOSING;
 		try {
 			this.inner.eaglerIn.abort();
-		} catch (err) {}
+		} catch (err) { }
 		this.readyState = WebSocket.CLOSED;
 	}
 }
@@ -153,7 +153,7 @@ class SettingsWS extends EventTarget {
 			this.dispatchEvent(new CloseEvent("close"));
 		}
 	}
-	close() {}
+	close() { }
 }
 
 class EpoxyWS extends EventTarget {
@@ -221,7 +221,7 @@ class EpoxyWS extends EventTarget {
 		) {
 			try {
 				this.inner.close(0, "");
-			} catch (e) {}
+			} catch (e) { }
 		}
 	}
 }
@@ -370,7 +370,7 @@ class AutoWS extends EventTarget {
 		if (this.inner != null) {
 			try {
 				return this.inner.close();
-			} catch (e) {}
+			} catch (e) { }
 		}
 	}
 
@@ -407,8 +407,7 @@ export function makeFakeWebSocket(): typeof WebSocket {
 			let isCustomProtocol = url.port == "" && url.pathname.startsWith("//");
 
 			if (isCustomProtocol && url.hostname == "java" || url.hostname.includes("!")) {
-				console.log(uri);
-				const ws = new WispWS(uri);
+				const ws = new WispWS(uri.replaceAll("!", ""));
 				ws.start();
 				return ws;
 			} else if (isCustomProtocol && url.hostname == "settings" || url.hostname == "settings") {
