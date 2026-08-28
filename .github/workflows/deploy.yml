@@ -31,7 +31,7 @@ jobs:
         run: pnpm install
 
       - name: Build Wispcraft injector
-        run: pnpm run build && pnpm run build:injector && mv dist/injector.html dist/index.html
+        run: pnpm pack && mv dist/injector.html dist/index.html
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
