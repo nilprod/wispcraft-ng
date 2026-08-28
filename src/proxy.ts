@@ -296,11 +296,10 @@ export class EaglerProxy {
 						let fard = packet.copy();
 						fard.readVarInt();
 						let tag = fard.readString();
-						// debug
-						console.log(tag);
-						if (tag.startsWith("EAG|")) {
-							if (tag == "EAG|Skins-1.8" || tag == "EAG|Capes-1.8") {
-								let isCape = tag[4] == "C";
+						// namespaces support for newer mc versions
+						if (tag.startsWith("EAG|") || tag.startsWith("eagler:")) {
+							if (tag == "EAG|Skins-1.8" || tag == "EAG|Capes-1.8" || tag == "eagler:skins-1-8" || tag == "eagler:capes-1-8") {
+								let isCape = tag[4] == "C" || tag[7] == "c";
 								let data = fard.take(fard.length);
 								handleSkinCape(isCape, data).then((buf) => {
 									if (buf.length == 0) {
