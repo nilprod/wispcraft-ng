@@ -28,7 +28,7 @@ jobs:
         run: pnpm install
 
       - name: Build Wispcraft injector
-        run:
+        run: |
           pnpm run build && pnpm run build:injector
           mv dist/injector.html dist/index.html
           rm -rf dist/*.ts dist/connection
