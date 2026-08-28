@@ -2,10 +2,15 @@ name: Deploy Injector
 
 on: workflow_dispatch
 
+permissions:
+  contents: write 
+
 jobs:
   build:
     name: Build Wispcraft
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
