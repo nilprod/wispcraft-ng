@@ -1,4 +1,4 @@
-name: CI
+name: Deploy Injector
 
 on: workflow_dispatch
 
