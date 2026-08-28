@@ -509,7 +509,7 @@ export class EaglerProxy {
 	// pings remote server, sends json to eagler
 	async ping() {
 		let handshake = new Packet(Serverbound.Handshake);
-		handshake.writeVarInt(769);
+		handshake.writeVarInt(47);
 		handshake.writeString(this.serverAddress);
 		handshake.writeUShort(this.serverPort);
 		handshake.writeVarInt(State.Status);
