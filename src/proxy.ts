@@ -491,7 +491,7 @@ export class EaglerProxy {
 						let pk = packet.copy();
 						pk.readVarInt();
 						let tag = pk.readString();
-						if (tag.startsWith("EAG|")) {
+						if (tag.startsWith("EAG|") || tag.startsWith("eagler:")) {
 							break;
 						}
 					default:
