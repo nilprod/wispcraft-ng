@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   build:
-    name: Build Wispcraft
+    name: Deploy Wispcraft Injector
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -28,7 +28,10 @@ jobs:
         run: pnpm install
 
       - name: Build Wispcraft injector
-        run: pnpm pack && mv dist/injector.html dist/index.html
+        run:
+          pnpm run build && pnpm run build:injector
+          mv dist/injector.html dist/index.html
+          rm -rf dist/*.ts dist/connection
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
