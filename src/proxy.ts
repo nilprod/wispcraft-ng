@@ -296,9 +296,9 @@ export class EaglerProxy {
 						let fard = packet.copy();
 						fard.readVarInt();
 						let tag = fard.readString();
-						// debug
-						console.log(tag);
 						if (tag.startsWith("EAG|")) {
+							// debug
+							console.log(tag);
 							if (tag == "EAG|Skins-1.8" || tag == "EAG|Capes-1.8") {
 								let isCape = tag[4] == "C";
 								let data = fard.take(fard.length);
