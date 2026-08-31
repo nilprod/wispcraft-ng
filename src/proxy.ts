@@ -304,7 +304,12 @@ export class EaglerProxy {
 						let tag = fard.readString();
 						// namespaces support for newer mc versions
 						if (tag.startsWith("EAG|") || tag.startsWith("eagler:")) {
-							if (tag == "EAG|Skins-1.8" || tag == "EAG|Capes-1.8" || tag == "eagler:skins-1-8" || tag == "eagler:capes-1-8") {
+							if (
+								tag == "EAG|Skins-1.8" ||
+								tag == "EAG|Capes-1.8" ||
+								tag == "eagler:skins-1-8" ||
+								tag == "eagler:capes-1-8"
+							) {
 								let isCape = tag[4] == "C" || tag[7] == "c";
 								let data = fard.take(fard.length);
 								handleSkinCape(isCape, data).then((buf) => {
@@ -487,8 +492,7 @@ export class EaglerProxy {
 					// i will not touch a packet like this again.
 					// thanks: https://tools.minecraft.wiki/static/tools/protocol/
 					case Clientbound.UpdateRecipes:
-						if (this.protocol == 498)
-							break;
+						if (this.protocol == 498) break;
 					case getVersionPacketId(
 						this.protocol,
 						PacketType.Clientbound,
