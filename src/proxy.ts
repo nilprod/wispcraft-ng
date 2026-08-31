@@ -86,6 +86,10 @@ enum Clientbound_1_12 {
 	PluginMessage = 0x18,
 }
 
+enum Clientbound_1_15 {
+	PluginMessage = 0x19,
+}
+
 class Packet extends Buffer {
 	constructor(packetType: number) {
 		super(new Uint8Array());
@@ -167,7 +171,7 @@ function getVersionPacketId(
 			return Serverbound_1_8[packet];
 		} else if (protocol == 340) {
 			return Serverbound_1_12[packet];
-		} else if (protocol == 498) {
+		} else if (protocol == 498 || protocol == 754) {
 			return Serverbound_1_14[packet];
 		} else {
 			return Serverbound[packet];
@@ -177,6 +181,8 @@ function getVersionPacketId(
 			return Clientbound_1_8[packet];
 		} else if (protocol == 340 || protocol == 498) {
 			return Clientbound_1_12[packet];
+		} else if (protocol == 754) {
+			return Clientbound_1_15[packet];
 		} else {
 			return Clientbound[packet];
 		}
